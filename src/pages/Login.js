@@ -11,6 +11,10 @@ import { useState } from "react";
 import { GITHUB_API_URL, HEROKU_API_URL } from "../helper";
 
 function Login() {
+  console.log(
+    process.env.REACT_APP_CLIENT_ID,
+    process.env.REACT_APP_CLIENT_SECRET
+  );
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useDispatch();
@@ -33,7 +37,8 @@ function Login() {
   }
 
   const onFailure = (response) => {
-    setErrorMessage(response.data.message || "Something went wrong");
+    console.log(response);
+    setErrorMessage(response.data?.message || "Something went wrong");
     setLoading(false);
   };
 
